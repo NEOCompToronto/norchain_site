@@ -7,7 +7,10 @@ echo "zipWebSite"
 #only publish folder
 #cd ./publish/html5/
 
-cd ./website/home/
+#spot ip. use the same ip as before
+ServerIP=54.201.172.209
+
+cd ./WebsiteOct/website2/
 
 
 zip -r ./norchain.zip ./* -X *.DS_Store
@@ -18,9 +21,9 @@ cd ../../
 
 ls -l | grep norchain.zip
 
-scp -i ~/.ssh/zbeans.pem ./norchain.zip ec2-user@44.232.231.234:~/Documents/
-echo "run deploy_norchain.sh in amazon Server spot at 44.232.231.234"
-ssh -i ~/.ssh/zbeans.pem ec2-user@44.232.231.234 "cd Documents && ls -la && sh ./deploy_norchain.sh"
+scp -i ~/.ssh/zbeans.pem ./norchain.zip ec2-user@${ServerIP}:~/Documents/
+echo "run deploy_norchain.sh in amazon Server spot at ${ServerIP}"
+ssh -i ~/.ssh/zbeans.pem ec2-user@${ServerIP} "cd Documents && ls -la && sh ./deploy_norchain.sh"
 
 
 
